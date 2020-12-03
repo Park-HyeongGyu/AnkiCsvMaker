@@ -1,4 +1,5 @@
 import csv
+from Eng_Anki_CSV_ForTag import HowMakeTag
 
 class CSV_manual:
     def __init__(self, file_name, list_original):
@@ -63,17 +64,6 @@ def pprint(list):
     for line in list:
         print(line)
 #End of the pprint
-
-def HowMakeTag():
-    print("<태그 붙이는법>")
-    print("----모의고사----")
-    print("%Y%MH%G -> %G:학년")
-    print("Ex) 2020년 6월 고3모의고사: 20063")
-    print("----문제집----")
-    print("수특:st%Y%T -> %T:영어=>E, 영어독해연습=>EP")
-    print("만약 문제 번호를 추가하고 싶다면 st%Y%T%P%N -> %P:page, %N:number")
-    print("Ex) 2021년 수능 대비 수능특강 영어 : st21E")
-
 
 #From here, int main()
 def main():

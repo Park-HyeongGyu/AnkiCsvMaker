@@ -1,5 +1,6 @@
 import csv
-from Eng_ForExample import list_maker, pprint, HowMakeTag
+from Eng_ForExample import list_maker, pprint
+from Eng_Anki_CSV_ForTag import HowMakeTag
 
 class CSV_manual:
     def __init__(self, file_name, list_original):
