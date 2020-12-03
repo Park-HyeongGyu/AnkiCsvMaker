@@ -2,7 +2,7 @@ import csv
 
 class CSV_manual:
     def __init__(self, file_name, list_original):
-        #print("생성자 호출!")
+        # print("생성자 호출!")
         self.file_name = file_name
         self.list_original = list_original
     '''def set_info(self, file_name, list_original):
@@ -12,7 +12,7 @@ class CSV_manual:
     def CSV_writer(self):
         name_csv = "D:\CSV_For_Anki\Eng_started_200130\ " + self.file_name + ".csv"
         name_csv = name_csv.replace(" ", "")
-        #print("this is name_csv" + name_csv)
+        # print("this is name_csv" + name_csv)
         with open(name_csv, 'w', encoding = 'utf-8', newline='') as f:
             wr = csv.writer(f)
             wr.writerows(self.list_original)
@@ -22,9 +22,9 @@ class CSV_manual:
             rdr = csv.reader(f)
             for line in rdr:
                 print(line)
-#End of the class CSV_manual
-#To distinguish original csv module and new csv class that I made
-#I wrote all the name that contains 'csv' in upper case and set class name as CSV_manual
+# End of the class CSV_manual
+# To distinguish original csv module and new csv class that I made
+# I wrote all the name that contains 'csv' in upper case and set class name as CSV_manual
     
                   
         
@@ -37,25 +37,25 @@ def list_maker():
     while True:
         count = 0
         maker_list.append([])
-        #print("appending line......")
+        # print("appending line......")
         while count < column:
             tem = input(str(line+1) + ": ")
             if tem == "end":
                 del maker_list[line]
                 return maker_list
             maker_list[line].append(tem)
-            #print("appending tem.... this is count" + str(count) + " this is line" + str(line))
+            # print("appending tem.... this is count" + str(count) + " this is line" + str(line))
             count += 1
-        #main_list.append([])
+        # main_list.append([])
         maker_list[line].append(tag)
         line +=1
         print()
-#End of the maker
+# End of the maker
 
 def pprint(list):
     for line in list:
         print(line)
-#End of the pprint
+# End of the pprint
 
 def HowMakeTag():
     print("<태그 붙이는법>")
@@ -68,7 +68,7 @@ def HowMakeTag():
     print("Ex) 2021년 수능 대비 수능특강 영어 : st21E")
 
 
-#From here, int main()
+# From here, int main()
 def main():
     print("제작자:박형규")
     print("제작일:2020년4월30일")

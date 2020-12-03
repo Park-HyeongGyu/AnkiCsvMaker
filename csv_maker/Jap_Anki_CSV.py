@@ -1,5 +1,5 @@
 import csv
-#1만단어를 위한 1만개의퀴즈 1권 기초일본어 + JLPT N3태그를 자동으로 뒤에 붙여줌
+# 1만단어를 위한 1만개의퀴즈 1권 기초일본어 + JLPT N3태그를 자동으로 뒤에 붙여줌
 # column은 자동으로 3으로 설정(Kanzi - Korean - Hiragana)
 
 class CSV_manual:
@@ -26,9 +26,9 @@ class CSV_manual:
             for line in rdr:
                 print(line)
     
-#End of the class CSV_manual
-#To distinguish original csv module and new csv class that I made
-#I wrote all the name that contains 'csv' in upper case and set class name as CSV_manual
+# End of the class CSV_manual
+# To distinguish original csv module and new csv class that I made
+# I wrote all the name that contains 'csv' in upper case and set class name as CSV_manual
     
                   
         
@@ -41,7 +41,7 @@ def list_maker(var_type):
     while True:
         count = 0
         maker_list.append([])
-        #print("appending line......")
+        # print("appending line......")
         while count < column:
             if count == 0:
                 print("漢  字  _" + str(line + 1) + ":", end='')
@@ -71,7 +71,7 @@ def list_maker(var_type):
                 # print("appending tem.... this is count" + str(count) + " this is line" + str(line))
                 count += 1
             elif count == 3:
-                #print("T y p e _" + str(line + 1) + ":", end='')
+                # print("T y p e _" + str(line + 1) + ":", end='')
                 tem = var_type
                 if tem == "end" or tem == '끝' or tem == 'おわり':
                     del maker_list[line]
@@ -89,15 +89,15 @@ def list_maker(var_type):
             #print("appending tem.... this is count" + str(count) + " this is line" + str(line))
             count += 1'''
         maker_list[line].append(tag)
-        #main_list.append([])
+        # main_list.append([])
         line +=1
         print()
-#End of the maker
+# End of the maker
 
 def pprint(list):
     for line in list:
         print(line)
-#End of the pprint
+# End of the pprint
 '''
 <var_type>
 1:명사
@@ -114,7 +114,7 @@ def pprint(list):
 12:조사
 '''
 
-#From here, int main()
+# From here, int main()
 def main():
     print("제작자:박형규")
     print("anki 일본어 등록을 위해 만들어진 버전")

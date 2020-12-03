@@ -22,9 +22,9 @@ class CSV_manual:
             rdr = csv.reader(f)
             for line in rdr:
                 print(line)
-#End of the class CSV_manual
-#To distinguish original csv module and new csv class that I made
-#I wrote all the name that contains 'csv' in upper case and set class name as CSV_manual
+# End of the class CSV_manual
+# To distinguish original csv module and new csv class that I made
+# I wrote all the name that contains 'csv' in upper case and set class name as CSV_manual
     
                   
         
@@ -36,26 +36,26 @@ def list_maker():
     while True:
         count = 0
         maker_list.append([])
-        #print("appending line......")
+        # print("appending line......")
         while count < column:
             tem = input(str(line+1) + ": ")
             if tem == "end":
                 del maker_list[line]
                 return maker_list
             maker_list[line].append(tem)
-            #print("appending tem.... this is count" + str(count) + " this is line" + str(line))
+            # print("appending tem.... this is count" + str(count) + " this is line" + str(line))
             count += 1
-        #main_list.append([])
+        # main_list.append([])
         line +=1
         print()
-#End of the maker
+# End of the maker
 
 def pprint(list):
     for line in list:
         print(line)
-#End of the pprint
+# End of the pprint
 
-#From here, int main()
+# From here, int main()
 def main():
     print("제작자:박형규")
     main_list = list_maker()
