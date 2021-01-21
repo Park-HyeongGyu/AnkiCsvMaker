@@ -11,7 +11,7 @@ class CSV_manual:
         self.file_name = file_name
         self.list_original = list_original'''
     def CSV_writer(self):
-        name_csv = "D:\CSV_For_Anki\Eng_started_200130\ " + self.file_name + ".csv"
+        name_csv = "D: " + self.file_name + ".csv"
         name_csv = name_csv.replace(" ", "")
         #print("this is name_csv" + name_csv)
         with open(name_csv, 'w', encoding = 'utf-8', newline='') as f:
