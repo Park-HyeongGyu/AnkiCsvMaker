@@ -66,6 +66,8 @@ def HowMakeTag():
     print("수특:st%Y%T -> %T:영어=>E, 영어독해연습=>EP")
     print("만약 문제 번호를 추가하고 싶다면 st%Y%T%P%N -> %P:page, %N:number")
     print("Ex) 2021년 수능 대비 수능특강 영어 : st21E")
+    print("----책----")
+    print("MFI = Why doesn't microfinance work?")
 
 
 # From here, int main()
