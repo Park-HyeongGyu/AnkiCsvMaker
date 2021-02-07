@@ -4,7 +4,7 @@ from Eng_Anki_CSV_ForTag import HowMakeTag
 class CSV_manual:
     def __init__(self, file_name):
         #print("생성자 호출!")
-        self.d_file_name = "/data/data/com.termux/files/home/ankifiles/"+file_name + ".csv"
+        self.d_file_name = "/data/data/com.termux/files/home/csvs/Eng/"+file_name + ".csv"
     '''def set_info(self, file_name, list_original):
         print("set_info")
         self.file_name = file_name
