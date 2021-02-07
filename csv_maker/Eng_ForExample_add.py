@@ -4,7 +4,7 @@ from Eng_Anki_CSV_ForTag import HowMakeTag
 class CSV_manual:
     def __init__(self, file_name):
         #print("생성자 호출!")
-        self.d_file_name = "D: " + file_name + ".csv"
+        self.d_file_name = "C:\Users\user\Desktop\csvs\Eng\ " + file_name + ".csv"
         self.d_file_name = self.d_file_name.replace(" ", "")
     '''def set_info(self, file_name, list_original):
         print("set_info")
@@ -47,6 +47,7 @@ def list_maker():
         content_list.append(tag)
         CSV_module.CSV_adder(content_list)
         line += 1
+        print()
 #End of the maker
 
 def pprint(list):
