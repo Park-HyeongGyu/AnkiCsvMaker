@@ -1,5 +1,5 @@
-from how_make_tag import HowMakeTag
-from list_maker_add import list_maker
+from modules.how_make_tag import HowMakeTag
+from modules.list_maker_add import list_maker
 
 def GetFilename():
     a = input("Input file name : ")
