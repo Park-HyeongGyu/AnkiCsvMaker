@@ -1,0 +1,4 @@
+csv_maker/.vscode/
+__pycache__/
+csv_maker/__pycache__/
+remember_maker/__pycache__/
