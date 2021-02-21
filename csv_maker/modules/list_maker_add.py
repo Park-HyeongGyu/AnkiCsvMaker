@@ -86,6 +86,3 @@ def list_maker(filename_with_path_ended_with_csv):
         for_csv.adder(queue.Dequeue())
 #End of the maker
 
-if __name__ == "__main__":
-    print("hi\n\n")
-    list_maker("testing.csv")
