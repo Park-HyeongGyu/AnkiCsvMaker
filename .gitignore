@@ -3,3 +3,4 @@ __pycache__/
 csv_maker/__pycache__/
 remember_maker/__pycache__/
 csv_maker/modules/__pycache__/
+csv_maker/tests

@@ -1,4 +1,4 @@
-from modules.how_make_tag import HowMakeTag
+from modules.description import * 
 from modules.list_maker_add import list_maker
 
 def GetFilename():
@@ -15,6 +15,8 @@ def main():
     print("입력받은 텍스트들을 csv파일로 만들어주는 프로그램.")
     print("저장 경로:현재경로")
     print("위의 폴더 안에 자동으로 .csv가 붙은 파일을 만들어줍니다.")
+    print()
+    Convenients()
     HowMakeTag()
     list_maker(GetFilename())
     print("Press enter to exit program......", end="")
