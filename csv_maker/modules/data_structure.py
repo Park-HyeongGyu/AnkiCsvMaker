@@ -5,7 +5,7 @@ class CircularQueue:
         self.__QUEUE_SIZE = queue_size + 1
         self.__rear = 0
         self.__front = 0
-        for a in range(queue_size):
+        for a in range(self.__QUEUE_SIZE):
             self.__queue.append([])
         # if continor of queue is enpty list([]), it means that containor is empty.
     
