@@ -25,7 +25,7 @@ def IsStringContained(param_string, compare_list):
     return False
 
 def list_maker(filename_with_path_ended_with_csv):
-    QUEUE_SIZE = 2
+    QUEUE_SIZE = 3
     queue = CircularQueue(QUEUE_SIZE)
 
     for_csv = csvs(filename_with_path_ended_with_csv) 
