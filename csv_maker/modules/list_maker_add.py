@@ -1,4 +1,5 @@
 import csv
+from .data_structure import CircularQueue
 
 class csvs:
     def __init__(self, filename):
@@ -17,31 +18,71 @@ class csvs:
             wr = csv.writer(f)
             wr.writerow(content)
 
+def IsStringContained(param_string, compare_list):
+    for a in compare_list:
+        if param_string.find(a) != -1:
+            return True
+    return False
+
 def list_maker(filename_with_path_ended_with_csv):
+    QUEUE_SIZE = 3
+    queue = CircularQueue(QUEUE_SIZE)
+
     for_csv = csvs(filename_with_path_ended_with_csv) 
     column = int(input("input a column : "))
     tag = input("input a tag : ")
     line = for_csv.reader() + 1
     print("if you input 'end' then the input proceds end")
+
+    is_end = False
+    is_delete = False
     while True:
         count = 0
-        #print("appending line......")
         content_list = []
         while count <= column:
             if count==column:#In case of example sentence.
                 tem = input("Example of "+str(line)+": ")
-                if tem == "end":
-                    return 0 
-                content_list.append(tem)
             else:
                 tem = input(str(line) + ": ")
-                if tem == "end":
-                    return 0
-                content_list.append(tem)
-            #print("appending tem.... this is count" + str(count) + " this is line" + str(line))
+
+            if tem == "end":
+                is_end = True
+                break
+            elif IsStringContained(tem, ['이거 삭제', '이거삭제', 'Dths']):
+                print("Delete current.")
+                print()
+                is_delete = True
+                break
+            elif IsStringContained(tem, ['위 삭제', '위삭제', 'Dpr']):
+                print("Delete prior.")
+                print(queue.Pop(), "is deleted")
+                line -= 1
+                print()
+                is_delete = True
+                break
+            elif IsStringContained(tem, ['위 복사', '위복사', 'Cpr']):
+                print("Copying prior.")
+                print("Copied :" , queue.Top()[count])
+                tem = queue.Top()[count]
+
+            content_list.append(tem)
             count += 1
+
+        if is_end:
+            break
+        if is_delete:
+            is_delete = False
+            continue
+
         content_list.append(tag)
-        for_csv.adder(content_list)
+        queue.Enqueue(content_list)
+        if queue.IsFull():
+            for_csv.adder(queue.Dequeue())
+
         line += 1
         print()
+
+    while not queue.IsEmpty():
+        for_csv.adder(queue.Dequeue())
 #End of the maker
+
