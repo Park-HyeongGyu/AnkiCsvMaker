@@ -4,3 +4,9 @@ csv_maker/__pycache__/
 remember_maker/__pycache__/
 csv_maker/modules/__pycache__/
 csv_maker/tests
+example_sentence_adder/__pycache__/
+example_sentence_adder/modules/__pycache__/
+example_sentence_adder/modules_new_word_maker/__pycache__/
+example_sentence_adder/contexts/
+example_sentence_adder/modules/002_ForSNU_Eng.txt
+
