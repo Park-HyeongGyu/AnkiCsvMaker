@@ -1,6 +1,6 @@
 from modules.preprocess_example_sentences import PreprocessExampleSentences
 from modules.check_overlap_with_original import CheckOverlapWithOriginal
-from modules.find_sentence_include_word import FindSentenceIncludeWord
+from modules.find_sentence_include_word import FindSentenceIncludeWordNlp
 from modules.handle_csv import HandleCsv
 from modules.parse_by_dot import ParseByDot
 
@@ -22,9 +22,9 @@ def main():
     print("input file name of example sentences.")
     file_name_example_sentences = input("file name : ")
 
-    file_name_new_words = "contexts/" + file_name_new_words
-    file_name_to_make = "contexts/" + file_name_to_make
-    file_name_example_sentences = "contexts/" + file_name_example_sentences
+    file_name_new_words = "contents/" + file_name_new_words
+    file_name_to_make = "contents/" + file_name_to_make
+    file_name_example_sentences = "contents/" + file_name_example_sentences
 
     preprocess_example_sentence = PreprocessExampleSentences(file_name_example_sentences)
     example_sentences = preprocess_example_sentence.get()
@@ -38,13 +38,13 @@ def main():
     if len(new_words[0]) >= 4:
         raise Exception("members of new words should be smaller than 3(english, meaning, tag)")
 
-    find_sentence_include_word = FindSentenceIncludeWord(parsed_example_sentences)
+    find_sentence_include_word = FindSentenceIncludeWordNlp(parsed_example_sentences)
     
     overlaped_words = list()
     write_in_normal = HandleCsv()
     write_in_overlapped = HandleCsv()
     write_in_normal.setFileNameToWrite(file_name_to_make)
-    write_in_overlapped.setFileNameToWrite('contexts/overlapped_words.csv')
+    write_in_overlapped.setFileNameToWrite('contents/overlapped_words.csv')
     check_overlap_with_original = CheckOverlapWithOriginal()
     
     print()
