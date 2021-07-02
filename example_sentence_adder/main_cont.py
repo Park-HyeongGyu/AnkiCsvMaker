@@ -2,7 +2,7 @@ from modules.preprocess_example_sentences import PreprocessExampleSentences
 from modules.check_overlap_with_original import CheckOverlapWithOriginal
 from modules.find_sentence_include_word import FindSentenceIncludeWordNlp
 from modules.handle_csv import HandleCsv
-from modules.parse_by_dot import ParseByDot
+from modules.split_by_sentence import SplitBySentence
 
 def description():
     print("this is program is prototype and is for temporary use.")
@@ -29,8 +29,8 @@ def main():
     preprocess_example_sentence = PreprocessExampleSentences(file_name_example_sentences)
     example_sentences = preprocess_example_sentence.get()
 
-    parse_by_dot = ParseByDot(example_sentences)
-    parsed_example_sentences = parse_by_dot.getSentenceSplitedAsList()
+    split_by_sentence = SplitBySentence(example_sentences)
+    parsed_example_sentences = split_by_sentence.getSentenceSplited()
 
     handle_csv = HandleCsv()
     new_words = handle_csv.read(file_name_new_words)
