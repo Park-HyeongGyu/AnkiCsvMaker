@@ -9,5 +9,5 @@ example_sentence_adder/modules/__pycache__/
 example_sentence_adder/modules_new_word_maker/__pycache__/
 example_sentence_adder/contents/
 example_sentence_adder/modules/002_ForSNU_Eng.txt
-example_sentence_adder/.venv/
+.venv/
 
