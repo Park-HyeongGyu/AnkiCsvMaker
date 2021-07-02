@@ -1,5 +1,6 @@
 import csv
 from .data_structure import CircularQueue
+from .spell_checker import check_spell
 
 class csvs:
     def __init__(self, filename):
@@ -31,7 +32,7 @@ def list_maker(filename_with_path_ended_with_csv):
     for_csv = csvs(filename_with_path_ended_with_csv) 
     column = int(input("input a column : "))
     tag = input("input a tag : ")
-    line = for_csv.reader() + 1
+    line = for_csv.reader()
     print("if you input 'end' then the input proceds end")
 
     is_end = False
@@ -39,11 +40,8 @@ def list_maker(filename_with_path_ended_with_csv):
     while True:
         count = 0
         content_list = []
-        while count <= column:
-            if count==column:#In case of example sentence.
-                tem = input("Example of "+str(line)+": ")
-            else:
-                tem = input(str(line) + ": ")
+        while count < column:
+            tem = input(str(line)+"_"+str(count) + ": ")
 
             if tem == "end":
                 is_end = True
@@ -64,6 +62,14 @@ def list_maker(filename_with_path_ended_with_csv):
                 print("Copying prior.")
                 print("Copied :" , queue.Top()[count])
                 tem = queue.Top()[count]
+            
+            if count == 0 and check_spell(tem.split()) != ():
+                for one_misspelled in check_spell(tem.split()):
+                    print("Misspelling!. misspelled:"+one_misspelled.misspelled, "/ recommended correction:"+one_misspelled.correction, "/ cadidates:"+str(one_misspelled.candidates))
+                is_amend = input("Amend? y/n : ")
+                if is_amend == 'y':
+                    print("Input again.")
+                    continue
 
             content_list.append(tem)
             count += 1
