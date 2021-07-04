@@ -1,8 +1,9 @@
 from modules.preprocess_example_sentences import PreprocessExampleSentences
-from modules.check_overlap_with_original import CheckOverlapWithOriginal
 from modules.find_sentence_include_word import FindSentenceIncludeWordNlp
 from modules.handle_csv import HandleCsv
 from modules.split_by_sentence import SplitBySentence
+from modules.anki_connecter import AnkiConnecter
+from modules.note_eng_example_sentence import NoteEngExampleSentence
 
 def description():
     print("this is program is prototype and is for temporary use.")
@@ -12,8 +13,14 @@ def description():
     print("Because I didn't complete making it.")
     print("\n")
 
+def caution():
+    print("*******CAUTION*******")
+    print("This code uses anki-connect. So you should open anki before processing.")
+    input("If you open anki, press enter.")
+
 def main():
     description()
+    caution()
 
     print("input name of file that is consisted with new words.")
     file_name_new_words = input("file name : ")
@@ -23,7 +30,6 @@ def main():
     file_name_example_sentences = input("file name : ")
 
     file_name_new_words = "contents/" + file_name_new_words
-    file_name_to_make = "contents/" + file_name_to_make
     file_name_example_sentences = "contents/" + file_name_example_sentences
 
     preprocess_example_sentence = PreprocessExampleSentences(file_name_example_sentences)
@@ -40,14 +46,9 @@ def main():
 
     find_sentence_include_word = FindSentenceIncludeWordNlp(parsed_example_sentences)
     
-    overlaped_words = list()
-    write_in_normal = HandleCsv()
-    write_in_overlapped = HandleCsv()
-    write_in_normal.setFileNameToWrite(file_name_to_make)
-    write_in_overlapped.setFileNameToWrite('contents/overlapped_words.csv')
-    check_overlap_with_original = CheckOverlapWithOriginal()
-    
     print()
+    note_for_param = NoteEngExampleSentence()
+    anki_connecter = AnkiConnecter()
     for line in new_words:
         example_to_append = ""
         english = line[0]
@@ -74,13 +75,17 @@ def main():
             chosens = getChosenNumbers(len(example_of_word))
             for one in chosens:
                 example_to_append = example_to_append + " / " + example_of_word[one-1]
-        
-        to_write_to_file = [english, meaning, example_to_append, tag]
-        if check_overlap_with_original.isOverlapped(english):
-            write_in_overlapped.appendOne(to_write_to_file)
-        else:
-            write_in_normal.appendOne(to_write_to_file)
+
+        note_for_param.setEnglish(english)        
+        note_for_param.setKorean(meaning)
+        note_for_param.setExampleSentence(example_to_append)
+        note_for_param.setTag(tag)
+
+        anki_connecter.stageNote(note_for_param)
         print()
+    anki_connecter.addAllStagedNotes()
+    anki_connecter.updateAllStagedDuplicatedNotes()
+    input("Press enter to exit program......")
 
 def getChosenNumbers(LIMIT):
     # This part should be modified to way that not uses while. But I don't have time now because I'm in school and doing Yaja.
