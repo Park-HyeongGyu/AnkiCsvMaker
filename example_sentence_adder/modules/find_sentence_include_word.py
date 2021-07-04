@@ -23,8 +23,8 @@ class FindSentenceIncludeWord:
 
 class FindSentenceIncludeWordNlp:
     def __init__(self, sentences_list):
-        if str(type(sentences_list)) != "<class 'list'>":
-            raise Exception("type of sentences_list should be list.")
+        if str(type(sentences_list)) != "<class 'list'>" and str(type(sentences_list)) != "<class 'tuple'>":
+            raise Exception("type of sentences_list should be list or tuple.")
         self.SENTENCE_DICT = dict() 
         for one_sentence in sentences_list:
             self.SENTENCE_DICT[self.__divideSentenceBasedOnPOS(one_sentence)] = one_sentence 
@@ -45,7 +45,7 @@ class FindSentenceIncludeWordNlp:
                 sent_preprocessed.append("-est")
             elif parts_of_speech == "POS": # possesive ending
                 sent_preprocessed.append("one's")
-            elif parts_of_speech == "PRP$": # jposessive pronoun
+            elif parts_of_speech == "PRP$": # posessive pronoun
                 sent_preprocessed.append("one's")
             elif parts_of_speech == "VBD": # verb, past tense
                 sent_preprocessed.append(self.__getNon3rdPresentTense(word))
@@ -53,6 +53,9 @@ class FindSentenceIncludeWordNlp:
                 sent_preprocessed.append(self.__getNon3rdPresentTense(word))
             elif parts_of_speech == "VBN": # past participle
                 sent_preprocessed.append(self.__getNon3rdPresentTense(word))
+                sent_preprocessed.append("pp")
+                sent_preprocessed.append("p.p")
+                sent_preprocessed.append("p.p.")
             elif parts_of_speech == "VBP": # non 3rd person present
                 sent_preprocessed.append(self.__getNon3rdPresentTense(word))
             elif parts_of_speech == "VBZ": # 3rd person present
@@ -65,17 +68,48 @@ class FindSentenceIncludeWordNlp:
         return WordNetLemmatizer().lemmatize(word, 'v')
     
     def find(self, word_to_find):
-        keys_divided_sentences = list()
+        splitte_word = word_to_find.split()
+        if len(splitte_word) == 1: # In case of there is no space in word_to_find
+            return self.__findWordWithNoSpace(word_to_find)
+        elif len(splitte_word) != 1:
+            return self.__findWordWithSpace(tuple(splitte_word))
+
+    def __findWordWithNoSpace(self, word_to_find):
+        if str(type(word_to_find)) != "<class 'str'>":
+            raise Exception("type of word_to_find should be str.")
+        sentences_finded = list()
         divided_sentences = self.SENTENCE_DICT.keys()
         for one_divided_sentence in divided_sentences:
             if word_to_find in one_divided_sentence:
-                keys_divided_sentences.append(one_divided_sentence)
-
-        to_return = list()
-        for one_divided_sentences_contains_word_to_find in keys_divided_sentences:
-            to_return.append(self.SENTENCE_DICT[one_divided_sentences_contains_word_to_find])
-        
-        return to_return
+                unsplitted_sentence = self.SENTENCE_DICT[one_divided_sentence]
+                sentences_finded.append(unsplitted_sentence)
+        return tuple(sentences_finded)
+    
+    def __findWordWithSpace(self, word_to_find):
+        if str(type(word_to_find)) != "<class 'tuple'>" and str(type(word_to_find)) != "<class 'list'>":
+            raise Exception("Type of word_to_find_tupe should be tuple or list.")
+        preprocessed_word_to_find = self.__removeExceptions(word_to_find)
+        sentences_finded = list()
+        divided_sentences = self.SENTENCE_DICT.keys()
+        for one_divided_sentence in divided_sentences:
+            count_finded_word = 0
+            for one_word in preprocessed_word_to_find:
+                if one_word in one_divided_sentence:
+                    count_finded_word += 1
+            if count_finded_word == len(preprocessed_word_to_find):
+                unsplitted_sentence = self.SENTENCE_DICT[one_divided_sentence]
+                sentences_finded.append(unsplitted_sentence)
+        return tuple(sentences_finded)
+    
+    def __removeExceptions(self, word_list):
+        if str(type(word_list)) != "<class 'tuple'>" and str(type(word_list)) != "<class 'list'>":
+            raise Exception("Type of word_list should be tuple or list")
+        exceptions = ('...', '~', 'A', 'B')
+        word_list_copied = list(word_list)
+        for one_word in word_list:
+            if one_word in exceptions:
+                word_list_copied.remove(one_word)
+        return word_list_copied
 
 def test():
     pass
