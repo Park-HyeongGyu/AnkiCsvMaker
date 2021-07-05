@@ -16,7 +16,7 @@ def check_spell(word_list):
     if str(type(word_list)) != "<class 'list'>":
         raise Exception('type of word_list in class SpellChecker should be list.')
     checker = SpellChecker()
-    checker.word_frequency.load_words(['-er', '-est', '-ing', '-ed', 'p.p', 'p.p.', 'pp']) 
+    checker.word_frequency.load_words(['-er', '-est', '-ing', '-ed', '~er', '~est', '~ing', '~ed', 'p.p', 'p.p.', 'pp']) 
     checker.word_frequency.load_words(['...', '~', 'A', 'B'])
 
     misspelled = checker.unknown(word_list)

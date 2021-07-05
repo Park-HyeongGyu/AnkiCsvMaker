@@ -32,7 +32,7 @@ def list_maker(filename_with_path_ended_with_csv):
     for_csv = csvs(filename_with_path_ended_with_csv) 
     column = int(input("input a column : "))
     tag = input("input a tag : ")
-    line = for_csv.reader()
+    line = for_csv.reader() + 1
     print("if you input 'end' then the input proceds end")
 
     is_end = False
