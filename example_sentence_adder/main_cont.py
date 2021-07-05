@@ -24,8 +24,6 @@ def main():
 
     print("input name of file that is consisted with new words.")
     file_name_new_words = input("file name : ")
-    print("input file name that you are gonna make (file that include example sentences)")
-    file_name_to_make = input("file name : ")
     print("input file name of example sentences.")
     file_name_example_sentences = input("file name : ")
 
@@ -36,7 +34,7 @@ def main():
     example_sentences = preprocess_example_sentence.get()
 
     split_by_sentence = SplitBySentence(example_sentences)
-    parsed_example_sentences = split_by_sentence.getSentenceSplited()
+    parsed_example_sentences = split_by_sentence.getSentenceSplitted()
 
     handle_csv = HandleCsv()
     new_words = handle_csv.read(file_name_new_words)
@@ -102,7 +100,7 @@ def getChosenNumbers(LIMIT):
             numbers[x] = int(numbers[x])
         cont = 0
         for one in numbers:
-            if one <= 0 or one > LIMIT:
+            if one < 0 or one > LIMIT:
                 print("input correct numbers.\n")
                 cont += 1
         if cont == 0:
