@@ -41,8 +41,10 @@ class FindSentenceIncludeWordNlp:
                 sent_preprocessed.append(self.__getSingularNoun(word))
             elif parts_of_speech == "JJR": #adjective comparative
                 sent_preprocessed.append("-er")
+                sent_preprocessed.append("~er")
             elif parts_of_speech == "JJS": # adjective, surperlative
                 sent_preprocessed.append("-est")
+                sent_preprocessed.append("~est")
             elif parts_of_speech == "POS": # possesive ending
                 sent_preprocessed.append("one's")
             elif parts_of_speech == "PRP$": # posessive pronoun
@@ -50,12 +52,16 @@ class FindSentenceIncludeWordNlp:
             elif parts_of_speech == "VBD": # verb, past tense
                 sent_preprocessed.append(self.__getNon3rdPresentTense(word))
             elif parts_of_speech == "VBG": # gerund/present participle ex.taking
+                sent_preprocessed.append("-ing")
+                sent_preprocessed.append("~ing")
                 sent_preprocessed.append(self.__getNon3rdPresentTense(word))
             elif parts_of_speech == "VBN": # past participle
                 sent_preprocessed.append(self.__getNon3rdPresentTense(word))
                 sent_preprocessed.append("pp")
                 sent_preprocessed.append("p.p")
                 sent_preprocessed.append("p.p.")
+                sent_preprocessed.append("-ed")
+                sent_preprocessed.append("~ed")
             elif parts_of_speech == "VBP": # non 3rd person present
                 sent_preprocessed.append(self.__getNon3rdPresentTense(word))
             elif parts_of_speech == "VBZ": # 3rd person present

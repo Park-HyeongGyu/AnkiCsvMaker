@@ -68,13 +68,17 @@ def main():
                     example_to_append = example_to_append + " / " + one_example
         elif len(example_of_word) > 3:
             print("<there is so much example sentences. choose which to append.>")
+            print("If you input only zero, you can input example sentence manually.")
             count = 1 
             for one in example_of_word:
                 print(count, ":", one)
                 count += 1
             chosens = getChosenNumbers(len(example_of_word))
-            for one in chosens:
-                example_to_append = example_to_append + " / " + example_of_word[one-1]
+            if chosens == [0]:
+                example_to_append = input("input example sentence : ")
+            else:
+                for one in chosens:
+                    example_to_append = example_to_append + " / " + example_of_word[one-1]
 
         note_for_param.setEnglish(english)        
         note_for_param.setKorean(meaning)
