@@ -98,12 +98,28 @@ class AnkiConnecter:
     
     def updateAllStagedDuplicatedNotes(self):
         duplicated_note_ids = tuple(self.__staged_notes_duplicated.keys())
+        quantity_total_cards = len(duplicated_note_ids)
+
+        self.__printEngsOfStagedDuplicatedNotes(duplicated_note_ids)
         self.__printProcess("updating all staged duplicated notes......")
+        print()
+
+        count = 1
         for duplicated_note_id in duplicated_note_ids:
+            eng = self.__staged_notes_duplicated[duplicated_note_id]['fields']['English']
+            print("(" + str(count) + "/" + str(quantity_total_cards) + ") : " + eng)
             self.__updateNoteFields(duplicated_note_id)
             tag = self.__staged_notes_duplicated[duplicated_note_id]['tags'][0]
             self.__updateTags(tag, duplicated_note_id)
             self.__forgetNote(duplicated_note_id)
+            count += 1
+    
+    def __printEngsOfStagedDuplicatedNotes(self, duplicated_note_ids):
+        print("<List of duplicated notes>")
+        count = 1
+        for duplicated_note_id in duplicated_note_ids:
+            print(count + " : " + self.__staged_notes_duplicated[duplicated_note_id]['fields']['English'])
+            count += 1
     
     def __updateNoteFields(self, duplicated_note_id):
         param = dict()
