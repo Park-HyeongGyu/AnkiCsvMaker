@@ -118,7 +118,7 @@ class AnkiConnecter:
         print("<List of duplicated notes>")
         count = 1
         for duplicated_note_id in duplicated_note_ids:
-            print(count + " : " + self.__staged_notes_duplicated[duplicated_note_id]['fields']['English'])
+            print(str(count) + " : " + self.__staged_notes_duplicated[duplicated_note_id]['fields']['English'])
             count += 1
     
     def __updateNoteFields(self, duplicated_note_id):
