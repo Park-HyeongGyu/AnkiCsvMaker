@@ -66,7 +66,10 @@ class FindSentenceIncludeWordNlp:
                 sent_preprocessed.append(self.__getNon3rdPresentTense(word))
             elif parts_of_speech == "VBZ": # 3rd person present
                 sent_preprocessed.append(self.__getNon3rdPresentTense(word))
-        return tuple(sent_preprocessed)
+            sent_preprocessed_lower = list() 
+            for one in sent_preprocessed:
+                sent_preprocessed_lower.append(one.lower())
+        return tuple(sent_preprocessed_lower)
     
     def __getSingularNoun(self, word):
         return WordNetLemmatizer().lemmatize(word)
@@ -74,11 +77,14 @@ class FindSentenceIncludeWordNlp:
         return WordNetLemmatizer().lemmatize(word, 'v')
     
     def find(self, word_to_find):
-        splitte_word = word_to_find.split()
-        if len(splitte_word) == 1: # In case of there is no space in word_to_find
-            return self.__findWordWithNoSpace(word_to_find)
-        elif len(splitte_word) != 1:
-            return self.__findWordWithSpace(tuple(splitte_word))
+        splitted_word = word_to_find.split()
+        if len(splitted_word) == 1: # In case of there is no space in word_to_find
+            return self.__findWordWithNoSpace(word_to_find.lower())
+        elif len(splitted_word) != 1:
+            splitted_word_lower = list()
+            for one in splitted_word:
+                splitted_word_lower.append(one.lower())
+            return self.__findWordWithSpace(tuple(splitted_word_lower))
 
     def __findWordWithNoSpace(self, word_to_find):
         if str(type(word_to_find)) != "<class 'str'>":
